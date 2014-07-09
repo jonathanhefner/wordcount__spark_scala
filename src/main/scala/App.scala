@@ -3,9 +3,15 @@ import org.apache.spark.SparkContext._
 import org.apache.spark.SparkConf
 import org.apache.spark.rdd.RDD
 
+import org.apache.log4j.Logger
+import org.apache.log4j.Level
+
 object App {
   def main(args: Array[String]) {
     val path = if (args.isEmpty) "data/*" else args.mkString(",")
+
+    Logger.getLogger("org.apache").setLevel(Level.WARN)
+    Logger.getLogger("Remoting").setLevel(Level.WARN)
 
     val conf = new SparkConf().setAppName("Word Count")
     val sc = new SparkContext(conf)
