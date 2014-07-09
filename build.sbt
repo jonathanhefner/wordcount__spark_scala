@@ -7,3 +7,6 @@ scalaVersion := "2.10.4"
 libraryDependencies += "org.apache.spark" %% "spark-core" % "1.0.0"
 
 resolvers += "Akka Repository" at "http://repo.akka.io/releases/"
+
+// don't include Scala version in jar file name
+crossPaths := false
