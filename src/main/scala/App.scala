@@ -5,9 +5,11 @@ import org.apache.spark.rdd.RDD
 
 object App {
   def main(args: Array[String]) {
+    val path = if (args.isEmpty) "data/*" else args.mkString(",")
+
     val conf = new SparkConf().setAppName("Word Count")
     val sc = new SparkContext(conf)
-    val lines = sc.textFile("data/*").filter(_.length > 0)
+    val lines = sc.textFile(path).filter(_.length > 0)
     val words = lines.flatMap(_.split(" "))
     
     stats(lines, "Lines")
